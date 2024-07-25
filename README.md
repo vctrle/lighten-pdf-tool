@@ -12,6 +12,7 @@
 
 ### Output, 53KB (brightness: `#5f5f5f`)
 
-![Letter_forwarded_plans_for_Ixia,_4th_April_1940_REDUCED-1](https://github.com/user-attachments/assets/c442e0f8-a2e7-489c-a9fe-63730d196804)
+![Letter_forwarded_plans_for_Ixia,_4th_April_1940_REDUCED](https://github.com/user-attachments/assets/cf4a2c88-ce17-4f28-8b0e-9e9cf70087e2)
+
 
 
