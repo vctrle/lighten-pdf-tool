@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Lighten PDF Tool</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f0f0f0;
+			color: #333;
+			margin: 0;
+			padding: 20px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		h1 {
+			color: #4caf50;
+		}
+		#progress-container {
+			width: 100%;
+			background-color: #ddd;
+			margin-top: 10px;
+		}
+		#progress-bar {
+			width: 0%;
+			height: 30px;
+			background-color: #4caf50;
+			text-align: center;
+			line-height: 30px;
+			color: white;
+		}
+		#pdf-display {
+			width: 100%;
+			margin-top: 20px;
+		}
+		iframe {
+			width: 100%;
+			height: 600px;
+			border: 1px solid #ccc;
+		}
+		a {
+			display: none;
+			margin-top: 20px;
+			text-decoration: none;
+			color: white;
+			background-color: #4caf50;
+			padding: 10px 20px;
+			border-radius: 5px;
+			text-align: center;
+		}
+		#convert-button {
+			background-color: #4caf50;
+			color: #fff;
+			border: none;
+			padding: 10px 19px;
+			cursor: pointer;
+			font-size: 1em;
+		}
+		a:hover {
+			background-color: #45a049;
+		}
+		code {
+			font-size: 1.2em;
+		}
+		#threshold-range {
+			-webkit-appearance: none;
+			width: 300px; 
+			height: 15px;
+			border-radius: 5px;
+			background: linear-gradient(to right, #7a7a7a 0%, #7a7a7a 50%, #fff 50%, #fff 100%);
+			outline: none;
+			opacity: 1;
+		}
+		#threshold-range::-webkit-slider-thumb {
+			-webkit-appearance: none;
+			appearance: none;
+			width: 25px;
+			height: 25px;
+			border-radius: 50%;
+			background: #7a7a7a;
+			cursor: pointer;
+		}
+		#threshold-range::-moz-range-thumb {
+			width: 25px;
+			height: 25px;
+			border-radius: 50%;
+			background: #7a7a7a;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<h1>Lighten PDF Tool</h1>
+	<p>Optimal for scanned PDF documents</p>
+	<input type="file" id="pdf-upload" accept="application/pdf">
+	<br>
+	<label for="threshold-range">Brightness Threshold: <code><span id="threshold-value">#7a7a7a</span></code> <button onclick="showHelp()">Help?</button></label>
+	<br>
+	<input type="range" id="threshold-range" min="0" max="255" value="122">
+	<div id="help" style="display:none;">
+	<p>Pixels brighter than threshold = <span style="background: #FFF">white</span> <code>#ffffff</code><br>
+	Pixels darker than threshold = <span style="background: #000; color: #999;">black</span> <code>#000000</code><br>
+	Conversion may take several minutes even after 100% depending on file size.</p>
+	</div>
+	<br>
+	<button id="convert-button">Convert PDF</button>
+	<div id="progress-container">
+		<div id="progress-bar">0%</div>
+	</div>
+	<div id="pdf-display">
+		<a id="download-link">Download Converted PDF</a>
+		<iframe id="pdf-frame" style="display: none;"></iframe>
+	</div>
+	<script src="script.js"></script>
+</body>
+</html>
