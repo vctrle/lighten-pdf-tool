@@ -98,12 +98,12 @@
 	<p>Optimal for scanned PDF documents</p>
 	<input type="file" id="pdf-upload" accept="application/pdf">
 	<br>
-	<label for="threshold-range">Brightness Threshold: <code><span id="threshold-value">#7a7a7a</span></code> <button onclick="showHelp()">Help?</button></label>
+	<label for="threshold-range">Brightness Threshold: <code>RGB(<span id="threshold-value"></span>)</code> <button onclick="showHelp()">Help?</button></label>
 	<br>
 	<input type="range" id="threshold-range" min="0" max="255" value="122">
 	<div id="help" style="display:none;">
-	<p>Pixels brighter than threshold = <span style="background: #FFF">white</span> <code>#ffffff</code><br>
-	Pixels darker than threshold = <span style="background: #000; color: #999;">black</span> <code>#000000</code><br>
+	<p>Pixels brighter than threshold = <span style="background: #FFF">white</span> <code>RGB(255)</code><br>
+	Pixels darker than threshold = <span style="background: #000; color: #999;">black</span> <code>RGB(0)</code><br>
 	Conversion may take several minutes even after 100% depending on file size.</p>
 	</div>
 	<br>
