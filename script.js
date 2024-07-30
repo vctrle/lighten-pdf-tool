@@ -11,17 +11,19 @@ document.addEventListener('DOMContentLoaded', () => {
 	const thresholdRange = document.getElementById('threshold-range');
 	const thresholdValue = document.getElementById('threshold-value');
 
-	// Set initial background of the range input
-	const initialHexValue = ('00' + parseInt(thresholdRange.value).toString(16)).slice(-2);
-	const initialHexColor = `#${initialHexValue}${initialHexValue}${initialHexValue}`;
-	thresholdRange.style.background = `linear-gradient(to right, ${initialHexColor} 0%, ${initialHexColor} ${(thresholdRange.value/255)*100}%, #fff ${(thresholdRange.value/255)*100}%, #fff 100%)`;
+	const setBackground = (value) => {
+		const colorValue = parseInt(value);
+		const hexColor = `rgb(${colorValue}, ${colorValue}, ${colorValue})`;
+		thresholdRange.style.background = `linear-gradient(to right, ${hexColor} 0%, ${hexColor} ${(value/255)*100}%, #fff ${(value/255)*100}%, #fff 100%)`;
+	};
+
+	setBackground(thresholdRange.value);
+	thresholdValue.textContent = thresholdRange.value;
 
 	thresholdRange.addEventListener('input', (event) => {
 		const value = event.target.value;
-		const hexValue = ('00' + parseInt(value).toString(16)).slice(-2);
-		const hexColor = `#${hexValue}${hexValue}${hexValue}`;
-		thresholdValue.textContent = hexColor;
-		thresholdRange.style.background = `linear-gradient(to right, ${hexColor} 0%, ${hexColor} ${(value/255)*100}%, #fff ${(value/255)*100}%, #fff 100%)`;
+		thresholdValue.textContent = value;
+		setBackground(value);
 	});
 });
 
@@ -100,13 +102,10 @@ document.getElementById('convert-button').addEventListener('click', async () => 
 	const blob = new Blob([pdfBytes], { type: 'application/pdf' });
 	const url = URL.createObjectURL(blob);
 
-	// Show PDF iframe
 	pdfFrame.style.display = 'block';
 
-	// Display the PDF
 	pdfFrame.src = url;
 
-	// Prepare download link
 	const fileName = file.name.replace('.pdf', '_REDUCED.pdf');
 	downloadLink.href = url;
 	downloadLink.download = fileName;
